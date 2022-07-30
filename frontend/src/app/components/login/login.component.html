@@ -1,0 +1,46 @@
+<div class="container">
+    <form (ngSubmit)="submitForm()" [formGroup]="form" autocomplete="off">
+      <div style="display: flex; justify-content: center">
+        <mat-card class="form-container">
+          <mat-card-title>Login</mat-card-title>
+    
+          <!-- Username -->
+          <div>
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                placeholder="Ex. johndoe@email.com"
+                formControlName="email"
+              />
+              <button mat-icon-button matSuffix>
+                <mat-icon>account_circle</mat-icon>
+            </button>
+            </mat-form-field>
+          </div>
+          <!-- /Username -->
+    
+          <!-- Password -->
+          <div>
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                [type]="hide ? 'password' : 'text'"
+                placeholder="Ex. s3cr3tP@ss"
+                formControlName="password"
+              />
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <!-- /Password -->
+    
+          <div>
+            <button type="submit" mat-flat-button color="primary">Login</button>
+          </div>
+        </mat-card>
+      </div>
+    </form>
+  </div>

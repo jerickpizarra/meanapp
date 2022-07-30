@@ -1,0 +1,83 @@
+<div class="container">
+    <h1>{{actionTitle}}</h1>
+    <form class="example-form" (ngSubmit)="onSubmit()" [formGroup]="employeeForm" autocomplete="off">
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>First name</mat-label>
+                    <input matInput formControlName="firstName">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Last name</mat-label>
+                    <input matInput formControlName="lastName">
+                </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <table class="example-full-width" cellspacing="0"><tr>
+            <td> 
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Enter your email</mat-label>
+                    <input matInput formControlName="email" >
+                </mat-form-field>
+            <td>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Contact No.</mat-label>
+                    <input matInput formControlName="contactNo">
+                </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Job Title</mat-label>
+            <input matInput formControlName="jobTitle">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Company</mat-label>
+            <input matInput formControlName="company">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Department</mat-label>
+            <input matInput formControlName="department">
+        </mat-form-field>
+
+        <table>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Hire Date</mat-label>
+                        <input matInput formControlName="hireDate" [matDatepicker]="picker" [max]="maxDate" placeholder="MM/DD/YYYY">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Leave Date</mat-label>
+                        <input matInput formControlName="leaveDate" [matDatepicker]="picker2" [max]="maxDate" placeholder="MM/DD/YYYY">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+        <mat-list>
+            <button type="submit" mat-flat-button color="primary" ><span>{{addUpdate}}</span></button>
+            
+        </mat-list>
+
+    </form>
+
+    <div *ngIf="!!idExist">
+        <button (click)="onDelete()" mat-flat-button color="primary"><span>Delete</span></button>
+    </div>
+    
+    
+    
+</div>
