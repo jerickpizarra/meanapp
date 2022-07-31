@@ -8,9 +8,7 @@
   "description": "fullstack mean",
   "main": "index.js",
   "scripts": {
-    "ng" : "ng",
     "start": "node index.js",
-    "build": "ng build --prod",
     "server": "nodemon index.js"
   },
   "author": "jerickp",
