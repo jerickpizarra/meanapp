@@ -4,6 +4,8 @@
   "description": "fullstack mean",
   "main": "index.js",
   "scripts": {
+    "heroku-postbuild": "ng build --prod",
+    "ng": "ng",
     "start": "node backend/index.js",
     "server": "nodemon backend/index.js"
   },

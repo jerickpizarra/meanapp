@@ -2,14 +2,14 @@ const Employee = require('../models/employeeModel')
 const asyncHandler = require('express-async-handler')
 
 
-//@Fetch All Employee - @GET /api/employee/:id - @
+//@Fetch All Employee - @GET /api/employee/:id - @private
 const fetchEmployees = asyncHandler(async (req,res) => {
     const employee = await Employee.find()
 
     res.status(200).json(employee)
 })
 
-//@Fetch Employee - @GET /api/employee/:id - @
+//@Fetch Employee - @GET /api/employee/:id - @private
 const fetchEmployee = asyncHandler(async (req,res) => {
     const employee = await Employee.findById(req.params.id)
 
@@ -21,7 +21,7 @@ const fetchEmployee = asyncHandler(async (req,res) => {
     res.status(200).json(employee)
 })
 
-//@Create Employee - @POST /api/employee - @
+//@Create Employee - @POST /api/employee - @private
 const createEmployee = asyncHandler(async (req,res) => {
     const {
         firstName,
@@ -58,7 +58,7 @@ const createEmployee = asyncHandler(async (req,res) => {
     // }
 })
 
-//@Update Employee - @PUT /api/employee/:id - @
+//@Update Employee - @PUT /api/employee/:id - @private
 const updateEmployee = asyncHandler(async (req,res) => {
     const employee = await Employee.findById(req.params.id)
  
