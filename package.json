@@ -8,8 +8,8 @@
   "description": "fullstack mean",
   "main": "index.js",
   "scripts": {
-    "start": "node backend/index.js",
-    "server": "nodemon backend/index.js"
+    "start": "node index.js",
+    "server": "nodemon index.js"
   },
   "author": "jerickp",
   "license": "MIT",
