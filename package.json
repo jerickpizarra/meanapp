@@ -1,6 +1,9 @@
 {
   "name": "fullstack",
-  "version": "16.16.0",
+  "version": "1.0.0",
+  "engines": {
+    "node": "16.16.0"
+  },
   "description": "fullstack mean",
   "main": "index.js",
   "scripts": {
