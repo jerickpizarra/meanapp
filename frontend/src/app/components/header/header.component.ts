@@ -20,8 +20,4 @@ export class HeaderComponent implements OnInit {
 
     
   }
-
-  // back(){
-  //   this._location.back()
-  // }
 }

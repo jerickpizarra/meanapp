@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+  }
+
+
+  .rows:hover{
+    background-color: rgba(0,0,0,.1);
+    cursor: pointer;
+  }
+.container{
+  margin: 5rem;
+}
+
+.add{
+  position: absolute;
+  right: 50px;
+}

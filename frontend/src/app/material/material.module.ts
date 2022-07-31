@@ -12,6 +12,11 @@ import {MatListModule} from '@angular/material/list';
 import {MatDividerModule } from '@angular/material/divider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 
 
@@ -28,7 +33,10 @@ const material = [
   MatDividerModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  
+  MatSnackBarModule,
+  MatPaginatorModule,
+  MatBadgeModule,
+  MatGridListModule
 ];
 
 @NgModule({

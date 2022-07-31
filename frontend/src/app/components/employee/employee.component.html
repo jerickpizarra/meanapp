@@ -1,4 +1,9 @@
 <div class="container">
+    <div class="back">
+        <button mat-mini-fab (click)="location.back()" color="primary">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
     <h1>{{actionTitle}}</h1>
     <form class="example-form" (ngSubmit)="onSubmit()" [formGroup]="employeeForm" autocomplete="off">
         <table class="example-full-width" cellspacing="0"><tr>
@@ -68,14 +73,14 @@
             </tr>
         </table>
         <mat-list>
-            <button type="submit" mat-flat-button color="primary" ><span>{{addUpdate}}</span></button>
+            <button type="submit" mat-flat-button color="primary"><span>{{addUpdate}}</span></button>
             
         </mat-list>
 
     </form>
 
     <div *ngIf="!!idExist">
-        <button (click)="onDelete()" mat-flat-button color="primary"><span>Delete</span></button>
+        <button (click)="onDelete()" mat-flat-button color="primary" style="margin-top: 5px;"><span>Delete</span></button>
     </div>
     
     

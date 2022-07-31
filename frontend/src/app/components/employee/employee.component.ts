@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/app/interfaces/employee';
+import { Location } from '@angular/common'
 import { FormBuilder, FormControl, FormGroup, Validators  } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-employee',
@@ -17,19 +19,32 @@ export class EmployeeComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private route:ActivatedRoute) {
-    const currentYear = new Date().getFullYear();
-    this.maxDate = new Date(currentYear + 1, 11, 31);
+  constructor(
+    private formBuilder: FormBuilder,
+    private route:ActivatedRoute,
+    private apiService: ApiService,
+    private router: Router,
+    public location: Location,
+    private snackBar: MatSnackBar){
+      const currentYear = new Date().getFullYear();
+      this.maxDate = new Date(currentYear + 1, 11, 31);
 
-    this.idExist = this.route.snapshot.paramMap.get('id')
-    this.actionTitle = !!this.idExist ? "Edit" : "Add"
-    this.addUpdate = !!this.idExist ? "Update" : "Create"
+      this.idExist = this.route.snapshot.paramMap.get('id')
 
+      if(!!this.idExist){
+        this.getEmployee(this.idExist)
+
+        this.actionTitle = "Edit"
+        this.addUpdate ="Update"
+      }else{
+        this.actionTitle = "Add"
+        this.addUpdate ="Create"
+      }
    }
 
   ngOnInit(): void {
     this.employeeForm = this.formBuilder.group({
-      id:  this.idExist,
+      _id:  this.idExist,
       firstName: new FormControl(null, Validators.required),
       lastName: new FormControl(null, Validators.required),
       email: new FormControl(null, Validators.required),
@@ -44,11 +59,76 @@ export class EmployeeComponent implements OnInit {
 
   onSubmit(): void{
     if(!!this.idExist){
-
+      this.updateEmployee(this.employeeForm)
+    }else{
+      this.createEmployee(this.employeeForm)
     }
   }
   
   onDelete(): void{
-    console.log(this.employeeForm.value.id);
+    this.deleteEmployee(this.idExist)
   }  
+
+  checkEmployee(form: any){
+    //populate for if employee found
+    if(!!form._id){
+
+      //remove unused form property
+      delete form.createdAt
+      delete form.updatedAt
+      delete form.__v
+      
+      this.employeeForm.setValue(form)
+    }else{
+      this.router.navigate(['employee'])
+    }
+  }
+
+  getEmployee(id: string): void{
+    this.apiService
+          .getEmployee(id)
+          .subscribe(
+            (res:any) => this.checkEmployee(res),
+            (error: any) => {
+              console.log(error)
+              this.router.navigate(['employee'])
+            })
+  }
+
+  createEmployee(form: FormGroup): void{
+    this.apiService
+        .createEmployee(form.value)
+        .subscribe(
+          (res:any) => {
+            this.snackBar.open("Employee Added", "OK")._dismissAfter(3000),
+            this.router.navigate(['employees'])
+          },
+          (error: any) => console.log(error)
+        )
+  }
+
+  updateEmployee(form: any): void{
+    this.apiService
+      .updateEmployee(form.value)
+      .subscribe(
+        (res:any) => {
+          this.snackBar.open("Employee Updated", "OK")._dismissAfter(3000)
+          this.router.navigate(['employees'])
+        },
+        (error: any) => console.log(error)
+      )
+  }
+
+  deleteEmployee(id: string){
+    this.apiService
+      .deleteEmployee(id)
+      .subscribe(
+        (res:any) => {
+          console.log(id)
+          this.snackBar.open("Employee Deleted", "OK")._dismissAfter(3000)
+          this.router.navigate(['employees'])
+        },
+        (error: any) => console.log(error)
+      )
+  }
 }
