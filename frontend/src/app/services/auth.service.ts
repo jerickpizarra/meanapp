@@ -19,11 +19,9 @@ export class AuthService implements CanActivate {
 
   canActivate(): boolean{
     if(localStorage.getItem('token') === null){
-      console.log(!!this._isLoggedIn$, localStorage.getItem('token'))
       this.router.navigate(['login'])
       return false
     }
-    console.log(!!this._isLoggedIn$ , "test" , localStorage.getItem('token'))
     return true
   }
 

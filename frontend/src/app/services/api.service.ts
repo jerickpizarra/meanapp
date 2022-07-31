@@ -35,7 +35,7 @@ export class ApiService {
   }
 
   getEmployees(): Observable<Employee[]>{
-    return this.http.get<Employee[]>(baseAPI + '/api/employee/', { headers: this.headers })
+    return this.http.get<Employee[]>(baseAPI + '/api/employee', { headers: this.headers })
   }
 
   deleteEmployee(id: any): Observable<any>{
