@@ -26,8 +26,9 @@ app.use(express.static('./backend/public'));
 app.use('/api/user', require('./backend/routes/userRoutes'))
 app.use('/api/employee', require('./backend/routes/employeeRoutes'))
 
-app.get('/',(req,res)=>{
-    res.sendFile(path.join('./backend/public/index.html'));
+app.get('*',(req,res)=>{
+    // res.sendFile(path.join('./backend/public/index.html'));
+    res.redirect('back');
 })
 
 app.use(errorHandler)
