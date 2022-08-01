@@ -16,10 +16,6 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-// const module = require('path');
-
-// app.use(express.static(__dirname + "/dist"))
-
 app.use(express.static('./backend/public'));
 
 

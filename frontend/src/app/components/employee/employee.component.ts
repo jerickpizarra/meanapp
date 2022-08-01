@@ -124,7 +124,6 @@ export class EmployeeComponent implements OnInit {
       .deleteEmployee(id)
       .subscribe(
         (res:any) => {
-          console.log(id)
           this.snackBar.open("Employee Deleted", "OK")._dismissAfter(3000)
           this.router.navigate(['employees'])
         },

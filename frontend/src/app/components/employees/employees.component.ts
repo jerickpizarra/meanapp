@@ -34,7 +34,7 @@ export class EmployeesComponent implements OnInit {
     this.apiService
       .getEmployees()
       .subscribe(
-        (res:any) => {this.dataSource = res, console.log(res)}
+        (res:any) => {this.dataSource = res}
       )
   }
 

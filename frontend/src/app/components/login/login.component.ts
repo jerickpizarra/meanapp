@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       .login(this.form.value)
       .subscribe(
         (res: any) => {this.router.navigate(['/'])},
-        (error: any) => console.log(error))
+        (error: any) => alert("Invalid Credentials"))
         
     
   }
