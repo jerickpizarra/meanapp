@@ -24,7 +24,8 @@ app.use('/api/employee', require('./backend/routes/employeeRoutes'))
 
 app.get('*',(req,res)=>{
     // res.sendFile(path.join('./backend/public/index.html'));
-    res.redirect('back');
+    res.redirect(req.url);
+    // res.json(req.url)
 })
 
 app.use(errorHandler)
