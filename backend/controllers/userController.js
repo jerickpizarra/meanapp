@@ -51,7 +51,6 @@ const registerUser = asyncHandler(async (req, res) => {
 //@Authenticate user - @POST /api/user/login - @public
 const loginUser = asyncHandler(async (req, res) => {
     const {name, email, password} = req.body
-    res.sendFile(path.join('./backend/public/index.html'));
     const user = await User.findOne({email})
     
     if(user && (await bcrypt.compare(password, user.password))){
