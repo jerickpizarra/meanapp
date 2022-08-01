@@ -23,23 +23,26 @@ export class ApiService {
   }
 
   login(form: any): Observable<any> {  
-    console.log(this.developmentMode())
     return this.http.post(this.developmentMode() +'api/user/login',  form);
   }
 
   createEmployee(form: any): Observable<any> {  
+    console.log(this.developmentMode() +'api/employee/')
     return this.http.post(this.developmentMode() +'api/employee',  form, { headers: this.headers });
   }
   
   updateEmployee(form: any): Observable<any> {  
+    console.log(this.developmentMode() +'api/employee/')
     return this.http.put<Employee[]>(this.developmentMode() +'api/employee/'+ form._id,  form, { headers: this.headers });
   }
 
   getEmployee(id: any): Observable<Employee>{
+    console.log(this.developmentMode() +'api/employee/'+ id)
     return this.http.get<Employee>(this.developmentMode() +'api/employee/'+ id, { headers: this.headers })
   }
 
   getEmployees(): Observable<Employee[]>{
+    console.log(this.developmentMode() +'api/employee/')
     return this.http.get<Employee[]>(this.developmentMode() +'api/employee', { headers: this.headers })
   }
 
