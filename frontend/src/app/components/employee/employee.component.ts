@@ -11,6 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
+  token = localStorage.getItem('token')
+  
   addUpdate: string;
   idExist: any;
   actionTitle: string;
@@ -86,7 +88,7 @@ export class EmployeeComponent implements OnInit {
 
   getEmployee(id: string): void{
     this.apiService
-          .getEmployee(id)
+          .getEmployee(id, this.token)
           .subscribe(
             (res:any) => this.checkEmployee(res),
             (error: any) => {
@@ -97,7 +99,7 @@ export class EmployeeComponent implements OnInit {
 
   createEmployee(form: FormGroup): void{
     this.apiService
-        .createEmployee(form.value)
+        .createEmployee(form.value, this.token)
         .subscribe(
           (res:any) => {
             this.snackBar.open("Employee Added", "OK")._dismissAfter(3000),
@@ -109,7 +111,7 @@ export class EmployeeComponent implements OnInit {
 
   updateEmployee(form: any): void{
     this.apiService
-      .updateEmployee(form.value)
+      .updateEmployee(form.value, this.token)
       .subscribe(
         (res:any) => {
           this.snackBar.open("Employee Updated", "OK")._dismissAfter(3000)
@@ -121,7 +123,7 @@ export class EmployeeComponent implements OnInit {
 
   deleteEmployee(id: string){
     this.apiService
-      .deleteEmployee(id)
+      .deleteEmployee(id, this.token)
       .subscribe(
         (res:any) => {
           this.snackBar.open("Employee Deleted", "OK")._dismissAfter(3000)

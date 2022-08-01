@@ -12,7 +12,7 @@ import { Employee } from 'src/app/interfaces/employee';
 
 
 export class EmployeesComponent implements OnInit {
-  
+  token = localStorage.getItem('token')
 
   displayedColumns: string[] = ['company', 'department', 'firstName', 'lastName', 'jobTitle', 'email', 'contactNo', ];
   employees: Employee[] = []
@@ -23,6 +23,7 @@ export class EmployeesComponent implements OnInit {
     private apiService: ApiService,
     private router: Router, private auth: ApiService
     ){
+      
       this.loadEmployees()
     }
 
@@ -31,8 +32,9 @@ export class EmployeesComponent implements OnInit {
   }
 
   loadEmployees(){
+    
     this.apiService
-      .getEmployees()
+      .getEmployees(this.token)
       .subscribe(
         (res:any) => {this.dataSource = res}
       )

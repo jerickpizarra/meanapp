@@ -9,14 +9,16 @@ import { Employee } from '../interfaces/employee';
   providedIn: 'root'
 })
 export class ApiService {
-  token = localStorage.getItem('token')
-  headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this.token}`
-  })
-  
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
+
+  getHeader(token: any){
+    return  new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+  }
   
   developmentMode(): string{
     return !environment.production ? baseAPI : ""
@@ -26,23 +28,24 @@ export class ApiService {
     return this.http.post(this.developmentMode() +'api/user/login',  form);
   }
 
-  createEmployee(form: any): Observable<any> {  
-    return this.http.post(this.developmentMode() +'api/employee',  form, { headers: this.headers });
+  createEmployee(form: any, token:any): Observable<any> {  
+    return this.http.post(this.developmentMode() +'api/employee',  form, { headers: this.getHeader(token) });
   }
   
-  updateEmployee(form: any): Observable<any> {  
-    return this.http.put<Employee[]>(this.developmentMode() +'api/employee/'+ form._id,  form, { headers: this.headers });
+  updateEmployee(form: any, token:any): Observable<any> {  
+    return this.http.put<Employee[]>(this.developmentMode() +'api/employee/'+ form._id,  form, { headers: this.getHeader(token) });
   }
 
-  getEmployee(id: any): Observable<Employee>{
-    return this.http.get<Employee>(this.developmentMode() +'api/employee/'+ id, { headers: this.headers })
+  getEmployee(id: any, token:any): Observable<Employee>{
+    return this.http.get<Employee>(this.developmentMode() +'api/employee/'+ id, { headers: this.getHeader(token) })
   }
 
-  getEmployees(): Observable<Employee[]>{
-    return this.http.get<Employee[]>(this.developmentMode() +'api/employee', { headers: this.headers })
+  getEmployees(token: any): Observable<Employee[]>{
+    console.log(this.getHeader(token))
+    return this.http.get<Employee[]>(this.developmentMode() +'api/employee', { headers: this.getHeader(token) })
   }
 
-  deleteEmployee(id: any): Observable<any>{
-    return this.http.delete(this.developmentMode() +'api/employee/'+ id , { headers: this.headers })
+  deleteEmployee(id: any, token:any): Observable<any>{
+    return this.http.delete(this.developmentMode() +'api/employee/'+ id , { headers: this.getHeader(token) })
   }
 }
