@@ -1,0 +1,10 @@
+.container {
+    margin-top: 3rem;
+    display: grid;
+    justify-content: center;
+  }
+  
+
+  mat-form-field{
+    width: 100%;
+  }

@@ -1,0 +1,32 @@
+<div>
+    <mat-toolbar color="primary">
+      
+        <button mat-button mat-button [routerLink]="['/']">
+          <mat-icon>dashboard </mat-icon>
+          <span>Employee Dashboard</span>
+        </button>
+        
+        <span class="example-spacer"></span>
+        <mat-list>
+          <button mat-button [routerLink]="['/']">
+            <span>Home</span> 
+          </button>
+        </mat-list>
+        <mat-list>
+          <button mat-button [routerLink]="['employees']">
+            <span>Employees</span> 
+          </button>
+        </mat-list>
+        <!-- <mat-list>
+          <button mat-button [routerLink]="['employee']">
+            <span>Add - Employee</span> 
+          </button>
+        </mat-list> -->
+        <mat-divider inset vertical></mat-divider>
+        <mat-list>
+          <button mat-button (click)="authsService.logout()">
+            <span>Logout</span> 
+          </button>
+        </mat-list>
+      </mat-toolbar>
+</div>

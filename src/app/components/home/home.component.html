@@ -1,0 +1,29 @@
+<div>
+    
+  <div class="title">
+    <h1><b>
+        MEAN CRUD App with Authentication
+    </b>
+  </h1>
+  <p>Welcome to my custom MEAN CRUD App with authentication</p>
+  </div>
+  
+
+  <div>
+    <mat-grid-list cols="2" rowHeight="2.5:1">
+      <mat-grid-tile *ngFor="let item of techUsed">
+        <mat-card class="example-card">
+          <mat-card-title-group>
+            <mat-card-title>{{item.title}}</mat-card-title>
+            <mat-card-subtitle>{{item.subtitle}}</mat-card-subtitle>
+            <img mat-card-sm-image [src]="item.imgUrl" >
+          </mat-card-title-group>
+          <mat-card-content>
+            <p>{{item.description}}</p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </div>
+</div>
