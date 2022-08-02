@@ -6,6 +6,7 @@ const asyncHandler = require('express-async-handler')
 const fetchEmployees = asyncHandler(async (req,res) => {
     const employee = await Employee.find()
 
+    console.log(employee)
     res.status(200).json(employee)
 })
 

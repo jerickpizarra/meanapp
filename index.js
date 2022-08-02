@@ -18,14 +18,14 @@ app.use(express.urlencoded({extended: false}))
 
 app.use(express.static('./frontend'));
 
-app.get('/*', (req, res) =>
-    res.sendFile('index.html', {root: 'frontend/'}),
-);
+
 
 app.use('/api/user', require('./backend/routes/userRoutes'))
 app.use('/api/employee', require('./backend/routes/employeeRoutes'))
 
-
+app.use('/*', (req, res) =>
+    res.sendFile('index.html', {root: 'frontend/'}),
+);
 
 app.use(errorHandler)
 app.listen(port, () => console.log(`Server started on port ${port}`))
